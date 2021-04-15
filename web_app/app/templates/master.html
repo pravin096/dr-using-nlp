@@ -23,20 +23,18 @@
             <ul class="nav navbar-nav">
                 <li><a href="/eda_orig">Overview of Training Dataset</a></li>
                 <li><a href="https://www.udacity.com/">Made with Udacity</a></li>
-                <li><a href="https://github.com/">Contact</a></li>
+                <li><a href="https://github.com/pravin096">Contact</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-
-<div class="jumbotron">
-            <header class="intro-header" style="background-image: url('static/espen-bierud-image-unsplash.jpg')">
-    <div class="container">
+<div class="jumbotron"> 
+   <div class="container"> 
         <h1 class="text-center">Disaster Response API</h1>
         <p class="text-center">Analyzing message data for disaster response</p>
         <hr />
-      
+
         <div class="row">
             <div class="col-lg-12 form-group-lg">
                 <form action="/go" method="get">
@@ -50,75 +48,59 @@
 
         {% block message %}
         {% endblock %}
-    </div>
-</div>
+   </div> 
+</div> 
 
-<div class="container">
+ <div class="container"> 
+   <!-- <header class="intro-header" style="background-image: url('static/espen-bierud-image-unsplash.jpg')">  -->
     {% block content %}
         <div class="page-header">
-            <h1 class="text-center">Overview of Training Dataset</h1>
+            <h2 class="text-center">A Few Sample Messages</h1>
         </div>
     {% endblock %}
        
        
-       <style>
-          .borderstyle {
-             border:3px;
-             border-style:solid;
-             border-color:#287E7;
-             padding:1em;
-          }
-       </style>
-
        <div class="row">
            <!--<form action="/go" method="get"> -->
            <div class="col-md-4">
-	       <p style="font-size:1.5em" class="text-center"><i>This is a test message that i m entering so that i can check it out</i> </p>
-                    <div class="col-lg-offset-2">
-                        <form action="/classify_sample1" method="post">
-                            <!--    <button type="submit" name="submit_button" value="Classify sample messge 1"> -->
-                             <input type="submit" name="submit_button" class="btn-lg btn-success" value="Classify sample message 1">
-                        </form>
-<!--                        <button type="submit" class="btn btn-lg btn-success">Let's Classify</button> -->
-                    </div>
+	       <p style="font-size:1.4em" class="text-center"><i>Please pray for the millions of people affected by Cyclone Nargis in Myanmar (Burma) and help ensure basic necessities such as food, clean water and shelter are available.</i> </p>
            </div>
            <!-- </form>  -->
            <div class="col-md-4">
-	       <p class="borderstyle">Message 2 This is a test message that i m entering so that i can check it out </p>
-                    <div class="col-lg-offset-2">
-                        <form action="/classify_sample2" method="post">
-                             <input type="submit" name="submit_button" class="btn-lg btn-success" value="Classify sample message 2">
-<!--                        <button type="submit" class="btn btn-lg btn-success">Let's Classify</button> -->
+	       <p style="font-size:1.4em" class="text-center"><i>Through the nationwide fundraising campaign in support of the flood affected population, the RCSC has managed to collect and distribute large amounts of relief materials such as blankets, clothes and food.</i> </p>
+           </div>
+           <div class="col-md-4">
+	       <p style="font-size:1.4em" class="text-center"><i>Thousands of additional supplies including clothing, quilts, jackets, sleeping mats and hygiene items are being trucked to Gansu from pre-positioned stocks at disaster preparedness warehouses in nearby provinces.</i> </p>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-md-4">
+                    <div class="col-lg-offset-3">
+                        <form action="/classify_sample1" method="post">
+                             <input type="submit" name="submit_button" class="btn-lg btn-success" value="Classify this message">
                         </form>
                     </div>
            </div>
            <div class="col-md-4">
-	       <p>Message 3 This is a test message that i m entering so that i can check it out </p>
+                    <div class="col-lg-offset-3">
+                        <form action="/classify_sample2" method="post">
+                             <input type="submit" name="submit_button" class="btn-lg btn-success" value="Classify this message">
+                        </form>
+                    </div>
+           </div>
+           <div class="col-md-4">
+                    <div class="col-lg-offset-3">
+                        <form action="/classify_sample3" method="post">
+                             <input type="submit" name="submit_button" class="btn-lg btn-success" value="Classify this message">
+                        </form>
+                    </div>
            </div>
        </div>
 
-<!--    {% for id in ids %} -->
-<!--        <div id="{{id}}"></div> -->
-<!--    {% endfor %} -->
-</div>
+</div> 
 
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src=""https://cdnjs.cloudfare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 
-<!--<div chart="chart" id="bargraph"> -->
-<!--    <script> -->
-<!--       var graphs = {{ plot | safe }}; -->
-<!--       Plotly.plot('bargraph',graphs,{}); -->
-<!--    </script> -->
-<!--</div>  -->
 
-#<script type="text/javascript">
-#    const graphs = {{graphJSON | safe}};
-#    const ids = {{ids | safe}};
-#    for(let i in graphs) {
-#        Plotly.plot(ids[i], graphs[i].data, graphs[i].layout);
-#    }
-#</script>
 
 </body>
 </html>
