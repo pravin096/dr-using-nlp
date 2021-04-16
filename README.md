@@ -116,7 +116,7 @@ features__text_pipeline__tfidf__use_idf       : False
  
 </details>
 <details>   
-  <summary>F1 Score</summary>
+  <summary>Label-wise model performance</summary>
   * The F1 scores are very low for labels where number of messages are extremely low i.e. the extreme imbalance adversely affects model performance
   
   <img alt="Label-wise Model Performance" src="https://github.com/pravin096/dr-using-nlp/blob/main/web_app/app/static/LabelwiseModelPerformance.png">
