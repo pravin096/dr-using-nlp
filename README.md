@@ -105,12 +105,6 @@ features__text_pipeline__tfidf__use_idf       : False
 
 ## 7 Model Performance Evaluation
 ### 7.1 Evaluate performance and analyze test results
- Overall Model Performance 
- 
- Type of average | Recall | F1-Score
- ________________|________|_________
- Micro | 0.64 | 0.72
- Weighted | 0.64 | 0.67
  
 <details>
  <summary>Overall model performance</summary>
