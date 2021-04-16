@@ -11,7 +11,7 @@ Photo by <a href="https://unsplash.com/@nasa?utm_source=unsplash&utm_medium=refe
   
 <details>   
   <summary>Some summary</summary>
-  <img alt="Description" src=https://github.com/pravin096/dr-using-nlp/tree/main/web_app/app/static/espen-bierud-image-unsplash.jpg">
+  <img alt="Description" src=https://github.com/pravin096/dr-using-nlp/main/web_app/app/static/espen-bierud-image-unsplash.jpg">
 </details>  
 
 ## 2. Project Objectives
