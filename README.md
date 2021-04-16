@@ -108,6 +108,7 @@ features__text_pipeline__tfidf__use_idf       : False
  Overall Model Performance 
  
  Type of average | Recall | F1-Score
+ ________________|________|_________
  Micro | 0.64 | 0.72
  Weighted | 0.64 | 0.67
  
@@ -115,6 +116,7 @@ features__text_pipeline__tfidf__use_idf       : False
  <summary>Overall model performance</summary>
  
  Type of average | Recall | F1-Score
+ ----------------|--------|---------
  Micro | 0.64 | 0.72
  Weighted | 0.64 | 0.67
  
