@@ -9,7 +9,10 @@ Photo by <a href="https://unsplash.com/@espenbi?utm_source=unsplash&utm_medium=r
 
 Photo by <a href="https://unsplash.com/@nasa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">NASA</a> on <a href="https://unsplash.com/s/photos/tornado?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
-  
+<details>
+  <summary>Some summary</summary>
+  <img alt="Description" src=https://github.com/pravin096/dr-using-nlp/edit/main/web_app/app/static/espen-bierud-image-unsplash.jpg">
+</details>  
 
 ## 2. Project Objectives
 
