@@ -105,6 +105,14 @@ features__text_pipeline__tfidf__use_idf       : False
 
 ## 7 Model Performance Evaluation
 ### 7.1 Evaluate performance and analyze test results
+<details>
+ <summary>Overall model performance</summary>
+ 
+ Type of average | Recall | F1-Score
+ Micro | 0.64 | 0.72
+ Weighted | 0.64 | 0.67
+ 
+</details>
 <details>   
   <summary>F1 Score</summary>
   * The F1 scores are very low for labels where number of messages are extremely low i.e. the extreme imbalance adversely affects model performance
