@@ -2,13 +2,7 @@
 
 ## 1. Introduction
 
-This project involves development of a supervised learning model to classify text messages (direct or via social media) that disaster response organizations receive following a disaster. Typically, different organizations/ teams within organizations focus on addressing different problems such as providing food, shelter, water, medical aid and/or products, fixing infrastructure. These problems have been mapped to 36 categories. Two datasets have been provided - one containing text messages received (and associated data) and another containing corresponding category labels have been provided for this project.  
-
-Photo by <a href="https://unsplash.com/@espenbi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Espen Bierud</a> on <a href="https://unsplash.com/s/photos/tornado?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-![Photo by Espen Beirud] (https://github.com/pravin096/dr-using-nlp/blob/main/web_app/app/static/espen-bierud-image-unsplash.jpg)
-
-Photo by <a href="https://unsplash.com/@nasa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">NASA</a> on <a href="https://unsplash.com/s/photos/tornado?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
+This project involves development of a supervised learning model to classify text messages (direct or via social media) that disaster response organizations receive following a disaster. Typically, different organizations/ teams within organizations focus on addressing different problems such as providing food, shelter, water, medical aid and/or products, fixing infrastructure. These problems have been mapped to 36 categories. Two datasets have been provided - one containing text messages received (and associated data) and another containing corresponding category labels have been provided for this project.    
  
 
 ## 2. Project Objectives
@@ -114,7 +108,14 @@ features__text_pipeline__tfidf__use_idf       : False
 <details>   
   <summary>F1 Score</summary>
   * The F1 scores are very low for labels where number of messages are extremely low i.e. the extreme imbalance adversely affects model performance
+  
   <img alt="Label-wise Model Performance" src="https://github.com/pravin096/dr-using-nlp/blob/main/web_app/app/static/LabelwiseModelPerformance.png">
+  
+  * However, there is a wide variance in the F1 scores for labels with similar levels of imbalance. This indicates that the quality of message content (linguisitc clarity) differs across labels.
+  
+  <img alt="Label-wise Model Performance" src="https://github.com/pravin096/dr-using-nlp/blob/main/web_app/app/static/MsgCountvsF1.png">
+  
+  
 </details> 
 
 
