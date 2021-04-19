@@ -1,8 +1,8 @@
 # Disaster Response Pipeline Project
 
-- [Introduction](#heading)
-- [Business Understanding](#heading)
-  * [Business Success Criteria](#sub-heading)
+- [1. Introduction](##1. Introduction)
+- [4. Business Understanding](## 4. Business Understanding)
+  * [4.1 Business Success Criteria](### 4.1 Business success criteria)
 
 
 ## 1. Introduction
@@ -15,11 +15,11 @@ This project involves development of a supervised learning model to classify tex
 * Analyze text messages and devise a supervised learning model to identify problem classes/ categories
 * Develop a client-server app using Python Flask to present an overview of the training data
 
-## 3 Methodology 
+## 3. Methodology 
 * CRISP-DM (Cross-Industry Standard for Data Mining) https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining
 
 
-## 4 Business Understanding
+## 4. Business Understanding
 * Business Objective: To enable disaster response organizations to classify the incoming text messages received from diverse channels (direct and social media), into different (multiple) categories by analyzing the text message(s) to decode the problem(s) being reported so that they can effectively and efficiently channel their disaster response and relief efforts.
 
 ### 4.1 Business success criteria
