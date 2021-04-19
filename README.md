@@ -1,6 +1,6 @@
 # Disaster Response Pipeline Project
 
-- [1. Introduction](##1. Introduction)
+- [1. Introduction](##heading)
 - [4. Business Understanding](## 4. Business Understanding)
   * [4.1 Business Success Criteria](### 4.1 Business success criteria)
 
