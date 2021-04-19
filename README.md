@@ -1,10 +1,3 @@
-# Disaster Response Pipeline Project
-
-- [1. Introduction](#1.introduction)
-- [4. Business Understanding](#4.businessunderstanding)
-  * [4.1 Business Success Criteria](#4.1business success criteria)
-
-
 ## 1. Introduction
 
 This project involves development of a supervised learning model to classify text messages (direct or via social media) that disaster response organizations receive following a disaster. Typically, different organizations/ teams within organizations focus on addressing different problems such as providing food, shelter, water, medical aid and/or products, fixing infrastructure. These problems have been mapped to 36 categories. Two datasets have been provided - one containing text messages received (and associated data) and another containing corresponding category labels have been provided for this project.    
