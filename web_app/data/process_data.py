@@ -50,7 +50,8 @@ def create_cat_cols_for_multvalcols(source_col,source_value_list,cat_col_list,in
         others_categ_list  - List of categories that need to be cmbined in "Others" category
         input_df                 - source df
     OUTPUT
-        output_df                 - Updated source df containing category columns created as per columns listed in cat_col_list
+        output_df          - Updated source df containing category columns created as per columns
+                             listed in cat_col_list
     '''
     output_df = input_df
     i=0
@@ -66,6 +67,13 @@ def create_cat_cols_for_multvalcols(source_col,source_value_list,cat_col_list,in
 
 
 def load_data(messages_filepath, categories_filepath):
+    '''
+    INPUT
+        messages_file_path    - filepath of the messages dataset 
+        categories_file_path  - filepath of the categories dataset 
+    OUTPUT
+        output_df           - A dataset containing messages and categories merged into a single dataframe
+    '''
     #Load data into respective dataframes
     df = pd.read_csv(messages_filepath)
     df2 = pd.read_csv(categories_filepath)
@@ -85,7 +93,12 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_text(text):
-    
+    '''
+        INPUTS
+            text - Observation containing text string
+        OUTPUTS
+            clean_tokens - List containing tokens from cleaned text
+    '''
     ## Remove puncuation
     text = text.translate(string.punctuation)
     
@@ -163,6 +176,13 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    '''
+        INPUTS
+            df                - Dataframe containing messages and categories merged into a single dataset
+        OUTPUTS
+            database_filename - Filepath for the SQLite database that will host the dataset containing
+                                messages and categories
+    '''
     from sqlalchemy import create_engine
     import sqlite3
     
@@ -207,6 +227,16 @@ def save_data(df, database_filename):
 
 
 def main():
+    '''
+        INPUTS
+            messages_file_path    - filepath of the messages dataset 
+            categories_file_path  - filepath of the categories dataset
+            database_filename     - Filepath for the SQLite database that will host the dataset
+                                    containing messages and categories
+        OUTPUTS
+            Cleaned data (comprising original messages (original and cleaned) messages and categories) 
+            stored in the user specified SQLite database 
+    '''
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
