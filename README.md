@@ -1,8 +1,8 @@
 ## Table of Contents
 ====================
-* [1. Introduction](#1. Introduction)
-* [4. Business Understanding](#4. Business Understanding)
-  * [4.1 Business success criteria](#4.1 Business success criteria)
+* [1. Introduction](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#1-introduction)
+* [4. Business Understanding](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#4-business-understanding)
+  * [4.1 Business success criteria](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#41-business-success-criteria)
 
 ## 1. Introduction
 
