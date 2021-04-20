@@ -1,12 +1,11 @@
 ## 1. Introduction
 
-This project involves development of a supervised learning model to classify text messages (direct or via social media) that disaster response organizations receive following a disaster. Typically, different organizations/ teams within organizations focus on addressing different problems such as providing food, shelter, water, medical aid and/or products, fixing infrastructure. These problems have been mapped to 36 categories. Two datasets have been provided - one containing text messages received (and associated data) and another containing corresponding category labels have been provided for this project.    
+This project involves development of an app to enable disaster relief proganizations and aid workers classify text messages (direct or via social media) that are received following a disaster. Typically, different organizations/ teams within organizations focus on addressing different needs/ relief measures such as providing food, shelter, water, medical aid and/or products, fixing infrastructure. These problems have been mapped to 36 categories. Two datasets have been provided - one containing text messages received (and associated data) and another containing corresponding category labels have been provided for this project. The datasets have been provided by [Appen (earlier FigureEight](https://www.figure-eight.com/dataset/combined-disaster-response-data/)   
  
 
 ## 2. Project Objectives
 
-* Analyze text messages and devise a supervised learning model to identify problem classes/ categories
-* Develop a client-server app using Python Flask to present an overview of the training data
+* Develop an app using Python Flask for disaster relief organizations and aid workers to classify messages received by them following a disaster to enable them to channel disaster relief measures effectively and efficiently
 
 ## 3. Methodology 
 * CRISP-DM (Cross-Industry Standard for Data Mining) https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining
@@ -160,9 +159,11 @@ v) Reviewing the cleaned messages and applying further cleansing mechanisms usin
  <img alt="Train Dataset Overview 2 of 2" src="web_app/app/static/TrainDSOverview-2.png">
 </details>
 
+## 10 Licensing and Acknowledgements
+Thanks to Udacity for the starter code and FigureEight for providing dataset for this project 
 
-## 10 Package Requirements and Operating Instructions
-### 10.1 ETL Pipeline component
+## 11 Package Requirements and Operating Instructions
+### 11.1 ETL Pipeline component
 Component Filename: process_data.py
 
 Package requirements:
@@ -179,7 +180,7 @@ Operating Instructions:
     - To run ETL pipeline that cleans data and stores in database
         `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
 
-### 10.2 ML Pipeline component
+### 11.2 ML Pipeline component
 Component Filename: train_classifier.py
 
 Package requirements:
@@ -201,7 +202,7 @@ Operating Instructions:
         `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
 
-### 10.3 App component
+### 11.3 App component
 Component Filename: run.py
 
 Package requirements:
