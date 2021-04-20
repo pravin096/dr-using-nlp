@@ -70,8 +70,22 @@ def load_data(database_filepath):
     return X,y, category_names
 
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
-     
+    ''' Extracts information (through part of speech tagging) from a series containing input string 
+         METHODS
+            starting_verb - Returns a boolean if first tag is either a verb (verb or verb present (VBP))
+                            or first word is a retweet (RT)
+            fit           - No specific operation applied here
+            transform     - Applies the starting_verb method to each individual observation containing 
+                            input text string 
+    '''  
     def starting_verb(self, text):
+        '''
+            INPUTS
+                text - observation containing input text string
+            OUTPUTS
+                boolean - Returns True if first part of speech tag is VB or VBP or if first word is RT,
+                          False otherwise
+        '''
         import nltk
         sentence_list = nltk.sent_tokenize(text)
         for sentence in sentence_list:
@@ -82,9 +96,22 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         return False
 
     def fit(self, x, y=None):
+        '''
+          INPUTS
+                 x - Series containing text string
+          OUTPUTS
+                 Object of class StartingVerbExtractor  
+        '''
         return self
 
     def transform(self, X):
+        '''
+            INPUTS
+                X - Series containing text string
+            OUTPUTS
+                X_tagged - Series containing additional feature containing boolean variable that 
+                           indicates if first POS tag is verb or first word is a retweet  
+        '''
         X_tagged = pd.Series(X).apply(self.starting_verb)
         return pd.DataFrame(X_tagged)
 
