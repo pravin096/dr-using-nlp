@@ -1,3 +1,9 @@
+## Table of Contents
+====================
+* [1. Introduction](#1. Introduction)
+* [4. Business Understanding](#4. Business Understanding)
+  * [4.1 Business success criteria](#4.1 Business success criteria)
+
 ## 1. Introduction
 
 This project involves development of an app to enable disaster relief proganizations and aid workers classify text messages (direct or via social media) that are received following a disaster. Typically, different organizations/ teams within organizations focus on addressing different needs/ relief measures such as providing food, shelter, water, medical aid and/or products, fixing infrastructure. These problems have been mapped to 36 categories. Two datasets have been provided - one containing text messages received (and associated data) and another containing corresponding category labels have been provided for this project. The datasets have been provided by [Appen (earlier FigureEight)](https://www.figure-eight.com/dataset/combined-disaster-response-data/)   
