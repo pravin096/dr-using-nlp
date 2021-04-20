@@ -1,8 +1,17 @@
 ## Table of Contents
 ====================
 * [1. Introduction](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#1-introduction)
+* [2. Project Objectives](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#2-project-objectives)
+* [3. Methodology](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#3-methodology)
 * [4. Business Understanding](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#4-business-understanding)
-  * [4.1 Business success criteria](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#41-business-success-criteria)
+* [5 Data Understanding](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#5-data-understanding)
+* [6 Data Preparation](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#6-data-preparation)
+* [7 Modeling](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#7-modeling)
+* [8 Model Performance Evaluation](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#8-model-performance-evaluation)
+* [9 Visuals from the app](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#9-visuals-from-the-app)
+* [10 Licensing and Acknowledgements](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#10-licensing-and-acknowledgements)
+* [11 Package Requirements and Operating Instructions](https://github.com/pravin096/dr-using-nlp/blob/main/README.md#11-package-requirements-and-operating-instructions)
+    
 
 ## 1. Introduction
 
