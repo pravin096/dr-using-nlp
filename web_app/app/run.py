@@ -2,8 +2,14 @@ import json
 import plotly
 import pandas as pd
 
-from nltk.stem import WordNetLemmatizer
+import nltk
+import string
+import re
+
 from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+from nltk.stem.snowball import SnowballStemmer
 
 from flask import Flask
 from flask import render_template, request, jsonify
@@ -19,17 +25,21 @@ app = Flask(__name__)
 
 class StartingVerbExtractor(BaseEstimator, TransformerMixin):
     ''' Extracts information (through part of speech tagging) from a series containing input string 
-        METHODS
-            starting_verb - Returns a boolean if first tag is either a verb (verb or verb present (VBP)) or first word is a retweet (RT)
+         METHODS
+            starting_verb - Returns a boolean if first tag is either a verb (verb or verb present (VBP))
+                            or first word is a retweet (RT)
             fit           - No specific operation applied here
-            transform     - Applies the starting_verb method to each individual observation containing input text string 
+            transform     - Applies the starting_verb method to each individual observation containing 
+                            input text string 
     '''
+     
     def starting_verb(self, text):
         '''
             INPUTS
                 text - observation containing input text string
             OUTPUTS
-                boolean - Returns True if first part of speech tag is VB or VBP or if first word is RT, False otherwise
+                boolean - Returns True if first part of speech tag is VB or VBP or if first word is RT,
+                          False otherwise
         '''
         import nltk
         sentence_list = nltk.sent_tokenize(text)
@@ -52,9 +62,10 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
     def transform(self, X):
         '''
             INPUTS
-                x - Series containing text string
+                X - Series containing text string
             OUTPUTS
-                X_tagged - Series containing additional feature containing boolean variable that indicates if first POS tag is verb or first word is a retweet  
+                X_tagged - Series containing additional feature containing boolean variable that 
+                           indicates if first POS tag is verb or first word is a retweet  
         '''
         X_tagged = pd.Series(X).apply(self.starting_verb)
         return pd.DataFrame(X_tagged)
@@ -82,6 +93,59 @@ df = pd.read_sql_table('DisasterResponse',engine)
 
 # load model
 model = joblib.load("../models/classifier.pkl")
+
+def clean_text(text):
+    '''
+        INPUTS
+            text - Observation containing text string
+        OUTPUTS
+            clean_tokens - List containing tokens from cleaned text
+    '''
+    ## Remove puncuation
+    text = text.translate(string.punctuation)
+    
+    ## Convert words to lower case and split them
+    text = text.lower().split()
+    
+    ## Remove stop words
+    stops = set(stopwords.words("english"))
+    text = [w for w in text if not w in stops and len(w) >= 3]
+    
+    text = " ".join(text)    ## Clean the text
+    text = re.sub(r"[^A-Za-z0-9^,!.\/'+-=]", " ", text)
+    text = re.sub(r"what's", "what is ", text)
+    text = re.sub(r"\'s", " ", text)
+    text = re.sub(r"\'ve", " have ", text)
+    text = re.sub(r"n't", " not ", text)
+    text = re.sub(r"i'm", "i am ", text)
+    text = re.sub(r"\'re", " are ", text)
+    text = re.sub(r"\'d", " would ", text)
+    text = re.sub(r"\'ll", " will ", text)
+    text = re.sub(r",", " ", text)
+    text = re.sub(r"\.", " ", text)
+    text = re.sub(r"!", " ! ", text)
+    text = re.sub(r"\/", " ", text)
+    text = re.sub(r"\^", " ^ ", text)
+    text = re.sub(r"\+", " + ", text)
+    text = re.sub(r"\-", " - ", text)
+    text = re.sub(r"\=", " = ", text)
+    text = re.sub(r"'", " ", text)
+    text = re.sub(r"(\d+)(k)", r"\g<1>000", text)
+    text = re.sub(r":", " : ", text)
+    text = re.sub(r" e g ", " eg ", text)
+    text = re.sub(r" b g ", " bg ", text)
+    text = re.sub(r" u s ", " american ", text)
+    text = re.sub(r"\0s", "0", text)
+    text = re.sub(r" 9 11 ", "911", text)
+    text = re.sub(r"e - mail", "email", text)
+    text = re.sub(r"j k", "jk", text)
+    text = re.sub(r"\s{2,}", " ", text)    ## Stemming
+    text = text.split()
+    stemmer = SnowballStemmer('english')
+    stemmed_words = [stemmer.stem(word) for word in text]
+    text = " ".join(stemmed_words)
+    
+    return text
 
 def create_plot():
     '''
@@ -117,7 +181,7 @@ def create_plot_percentage_of_messages_by_class():
     '''
     import plotly.graph_objects as go
     # extract data needed for visuals    
-    df2 = df.iloc[:,5:-2]
+    df2 = df.iloc[:,4:-2]
     class_counts = pd.DataFrame(data=round(df2.sum()/df2.shape[0],4)*100,columns=['PercentageOfTotalMessages'])
     class_counts['Category'] = class_counts.index
     
@@ -168,6 +232,8 @@ def create_plot_message_count_by_classcount():
      title='<b>Count of Messages with multiple labels<b>',
      xaxis_title="<b>Count of labels<b>",
      yaxis_title="<b>Counts of Messages with multiple labels<b>",
+     width=500,
+     height=500,
     )
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
@@ -205,12 +271,21 @@ def eda_orig():
 # web page that handles user query and displays model results
 @app.route('/go')
 def go():
+    '''
+        INPUTS
+            query  - input text string entered by the user in the flask application
+        OUTPUTS
+            render_template - object containing go.html page, that displays classification results from
+                              execution of the model, and input text string received from the user for
+                              the classification
+    '''
     # save user input in query
     query = request.args.get('query', '') 
+    cleaned_text = clean_text(query)
 
     # use model to predict classification for query
-    classification_labels = model.predict([query])[0]
-    classification_columns = df.iloc[:,5:-2].columns #include all category columns -> Cat_
+    classification_labels = model.predict([cleaned_text])[0]
+    classification_columns = df.iloc[:,4:-2].columns #include all category columns -> Cat_
     classification_results = dict(zip(classification_columns, classification_labels))
 
     # This will render the go.html Please see that file. 
@@ -223,41 +298,95 @@ def go():
 
 @app.route('/classify_sample1',methods = ['GET','POST'])
 def classify_sample1(x = None, y = None):
+    '''
+        INPUTS
+            sample_query  - input text string containing the sample message selected by the user for 
+                            classification (this function is executed when user chooses to classify 
+                            sample message (the one displayed on bottom left on the main screen)
+        OUTPUTS
+            render_template - object containing go.html page, that displays classification results from
+                              execution of the model, and input text string received from the user for
+                              the classification
+    '''
     # save user input in query
-    text = 'Storm in London' 
-    print('in sample1')
+    sample_query = df.loc[25790,['message']].values[0] 
+    cleaned_text = clean_text(sample_query)
 
     # use model to predict classification for query
-    classification_labels = model.predict([text])[0]
-    classification_columns = df.iloc[:,5:-2].columns #include all category columns -> Cat_
+    classification_labels = model.predict([cleaned_text])[0]
+    classification_columns = df.iloc[:,4:-2].columns #include all category columns -> Cat_
     classification_results = dict(zip(classification_columns, classification_labels))
 
     # This will render the go.html Please see that file. 
     return render_template(
         'go.html',
-        query=text,
+        query=sample_query,
         classification_result=classification_results
     )
 
 @app.route('/classify_sample2',methods = ['GET','POST'])
 def classify_sample2(x = None, y = None):
+    '''
+        INPUTS
+            sample_query  - input text string containing the sample message selected by the user for 
+                            classification (this function is executed when user chooses to classify 
+                            sample message (the one displayed on bottom centre on the main screen)
+        OUTPUTS
+            render_template - object containing go.html page, that displays classification results from
+                              execution of the model, and input text string received from the user for
+                              the classification
+    '''
     # save user input in query
-    text = 'Storm in Berlin' 
+    sample_query = df.loc[13201,['message']].values[0] 
+    cleaned_text = clean_text(sample_query) 
     print('in sample2')
 
     # use model to predict classification for query
-    classification_labels = model.predict([text])[0]
-    classification_columns = df.iloc[:,5:-2].columns #include all category columns -> Cat_
+    classification_labels = model.predict([cleaned_text])[0]
+    classification_columns = df.iloc[:,4:-2].columns #include all category columns -> Cat_
     classification_results = dict(zip(classification_columns, classification_labels))
 
     # This will render the go.html Please see that file. 
     return render_template(
         'go.html',
-        query=text,
+        query=sample_query,
         classification_result=classification_results
     )
+@app.route('/classify_sample3',methods = ['GET','POST'])
+def classify_sample3(x = None, y = None):
+    '''
+        INPUTS
+            sample_query  - input text string containing the sample message selected by the user for 
+                            classification (this function is executed when user chooses to classify 
+                            sample message (the one displayed on bottom right on the main screen)
+        OUTPUTS
+            render_template - object containing go.html page, that displays classification results from
+                              execution of the model, and input text string received from the user for
+                              the classification
+    '''
+    # save user input in query
+    sample_query = df.loc[23110,['message']].values[0] 
+    cleaned_text = clean_text(sample_query) 
 
+    # use model to predict classification for query
+    classification_labels = model.predict([cleaned_text])[0]
+    classification_columns = df.iloc[:,4:-2].columns #include all category columns -> Cat_
+    classification_results = dict(zip(classification_columns, classification_labels))
+
+    # This will render the go.html Please see that file. 
+    return render_template(
+        'go.html',
+        query=sample_query,
+        classification_result=classification_results
+    )
 def main():
+    '''
+        Main function that runs the app hosted on the local machine, port 3001
+        INPUTS
+            None
+        OUTPUTs
+            None
+    '''
     app.run(host='0.0.0.0', port=3001, debug=True)
 
 
