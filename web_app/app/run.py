@@ -54,6 +54,8 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         '''
           INPUTS
                  x - Series containing text string
+                 y - labels; if not specified, defaulted to None
+   
           OUTPUTS
                  Object of class StartingVerbExtractor  
         '''
@@ -247,7 +249,7 @@ def index():
         INPUTS
             None
         OUTPUTS
-            render_template - object containing master.html page and plot(s) to be displayed on the page
+            render_template - object containing master.html page and bar plot to be displayed on the page
     '''
     bar = create_plot()
     return render_template('master.html',plot=bar)
@@ -259,7 +261,7 @@ def eda_orig():
         INPUTS
             None
         OUTPUTS
-            render_template - object containing eda.html page and plot(s) to be displayed on the page
+            render_template - object containing eda.html page and plots to be displayed on the page
     '''
     # create visuals
 
