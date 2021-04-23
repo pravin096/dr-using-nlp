@@ -122,7 +122,7 @@ def tokenize(text):
             text            : list containing cleaned messages
         
         OUTPUT
-            clean_tokens    : list containing clean tokens
+            clean_tokens    : list containing clean tokens (after lemmatization)
     '''
     
     tokens = word_tokenize(text)
