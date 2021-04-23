@@ -101,7 +101,7 @@ def clean_text(text):
         INPUTS
             text - Observation containing text string
         OUTPUTS
-            clean_tokens - List containing tokens from cleaned text
+            text - Cleaned text after converting to lower case, removing stop words, text cleansing and stemming
     '''
     ## Remove puncuation
     text = text.translate(string.punctuation)
