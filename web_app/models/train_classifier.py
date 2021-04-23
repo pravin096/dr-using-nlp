@@ -99,6 +99,7 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
         '''
           INPUTS
                  x - Series containing text string
+                 y - labels; if not specified, defaulted to None
           OUTPUTS
                  Object of class StartingVerbExtractor  
         '''
